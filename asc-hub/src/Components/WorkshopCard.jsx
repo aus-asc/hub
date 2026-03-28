@@ -59,25 +59,25 @@ const WorkshopCard = ({
   return (
     <div
       className={`relative bg-white border rounded-2xl flex flex-col gap-3 transition-all duration-200 hover:shadow-md h-full
-      ${isLive ? "border-[#4a9e6d] ring-1 ring-[#4a9e6d]/30" : "border-gray-100"}
-      ${compact ? "p-4" : "p-5"}
-    `}
+        ${isLive ? "border-[#4a9e6d] ring-1 ring-[#4a9e6d]/30" : "border-gray-100"}
+        ${compact ? "p-3 sm:p-4" : "p-4 sm:p-5"}
+      `}
     >
       {/* Live badge */}
       {isLive && (
-        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#4a9e6d] text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#4a9e6d] text-white text-[10px] font-bold uppercase tracking-widest px-2 sm:px-2.5 py-1 rounded-full">
           <FontAwesomeIcon
             icon={faCircle}
             className="text-[6px] animate-pulse"
           />
-          Live Now
+          <span className="hidden xs:inline">Live Now</span>
         </div>
       )}
 
       {/* Category badge */}
       {category && (
         <span
-          className={`inline-flex self-start text-xs font-semibold px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}
+          className={`inline-flex self-start text-[10px] sm:text-xs font-semibold px-2 sm:px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}
         >
           {category}
         </span>
@@ -85,7 +85,7 @@ const WorkshopCard = ({
 
       {/* Title */}
       <h4
-        className={`font-bold text-gray-900 leading-snug ${compact ? "text-xs" : "text-sm"}`}
+        className={`font-bold text-gray-900 leading-snug ${compact ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"}`}
       >
         {title}
       </h4>
@@ -93,30 +93,27 @@ const WorkshopCard = ({
       {/* Meta */}
       <div className="space-y-1.5 flex-1">
         {facilitator && (
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
             <FontAwesomeIcon icon={faUser} className="w-3 shrink-0" />
-            <span>{facilitator}</span>
+            <span className="truncate">{facilitator}</span>
           </div>
         )}
         {formattedDate && (
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
             <FontAwesomeIcon icon={faClock} className="w-3 shrink-0" />
             <span>
               {formattedDate} · {formattedTime}
             </span>
           </div>
         )}
-        {/* Location */}
-        {location && location != "" && (
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+        {location && location !== "" && (
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
             <FontAwesomeIcon icon={faLocationDot} className="w-3 shrink-0" />
-            <span>{location}</span>
+            <span className="truncate">{location}</span>
           </div>
         )}
-
-        {/* Week number */}
-        {week && week != "" && (
-          <div className="flex items-center gap-2 text-xs text-gray-400">
+        {week && week !== "" && (
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
             <FontAwesomeIcon icon={faHashtag} className="w-3 shrink-0" />
             <span>Week {week}</span>
           </div>
@@ -127,7 +124,7 @@ const WorkshopCard = ({
       {meetLink && !isPast && (
         <a
           href={meetLink}
-          className={`mt-1 inline-flex items-center gap-1.5 text-xs font-semibold text-white px-3.5 py-2 rounded-full self-start transition-colors
+          className={`mt-1 inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-white px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full self-start transition-colors
             ${isLive ? "bg-[#4a9e6d] hover:bg-[#3d8c60]" : "bg-gray-900 hover:bg-gray-700"}
           `}
         >

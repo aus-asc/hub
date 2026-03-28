@@ -8,13 +8,58 @@ html {
   scroll-behavior: smooth;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+/* ── ASC Custom Scrollbar ─────────────────────────────────────────────────── */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
 }
-@keyframes counter-spin {
-  to {
-    transform: rotate(-360deg);
-  }
+
+/* Webkit (Chrome, Safari, Edge) — global */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d8cc4;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ── Modal inner scroll (tighter, accent-colored) ────────────────────────── */
+.modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3d8cc4 #f1f5f9;
+}
+
+.modal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 999px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: #3d8cc4;
+  border-radius: 999px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #c8a135;
 }

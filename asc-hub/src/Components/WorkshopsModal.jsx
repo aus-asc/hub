@@ -24,7 +24,6 @@ const WorkshopsModal = ({ workshops, onClose }) => {
 
   const upcoming = getUpcoming(workshops);
 
-  // Group workshops by category
   const grouped = upcoming.reduce((acc, ws) => {
     const key = ws.category || "Other";
     if (!acc[key]) acc[key] = [];
@@ -32,21 +31,20 @@ const WorkshopsModal = ({ workshops, onClose }) => {
     return acc;
   }, {});
 
-  // Sort categories with "Other" always last
   const sortedCategories = Object.keys(grouped).sort((a, b) => {
     if (a === "Other") return 1;
     if (b === "Other") return -1;
-    return 0; // keep original order for others
+    return 0;
   });
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4"
       onClick={handleBackdrop}
     >
-      <div className="bg-white rounded-3xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl">
+      <div className="bg-white rounded-t-3xl sm:rounded-3xl w-full sm:max-w-2xl max-h-[90vh] sm:max-h-[85vh] flex flex-col shadow-2xl mx-4 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center">
               <FontAwesomeIcon
@@ -71,18 +69,16 @@ const WorkshopsModal = ({ workshops, onClose }) => {
             <FontAwesomeIcon icon={faXmark} className="text-gray-600 text-sm" />
           </button>
         </div>
+
         {/* Category nav */}
-        <div className="flex gap-2 px-4 pt-3 pb-1 flex-wrap border-b border-gray-100">
+        <div className="flex gap-2 px-3 sm:px-4 pt-3 pb-2 flex-wrap border-b border-gray-100">
           {sortedCategories.map((category) => {
             const colors = categoryColors[
               category
                 ?.trim()
                 .toLowerCase()
                 .replace(/[\s-]+/g, "_")
-            ] || {
-              bg: "bg-gray-100",
-              text: "text-gray-500",
-            };
+            ] || { bg: "bg-gray-100", text: "text-gray-500" };
             return (
               <button
                 key={category}
@@ -91,7 +87,7 @@ const WorkshopsModal = ({ workshops, onClose }) => {
                     .getElementById(`ws-cat-${category}`)
                     ?.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
-                className={`text-xs font-medium px-3 py-1.5 rounded-full ${colors.text} ${colors.bg} transition-colors cursor-pointer`}
+                className={`text-xs font-medium px-3 py-1.5 rounded-full whitespace-nowrap ${colors.text} ${colors.bg} transition-colors cursor-pointer`}
               >
                 {category}
                 <span className="ml-1.5 text-[10px] text-gray-400">
@@ -101,8 +97,9 @@ const WorkshopsModal = ({ workshops, onClose }) => {
             );
           })}
         </div>
+
         {/* List */}
-        <div className="overflow-y-auto flex-1 p-4 space-y-4">
+        <div className="modal-scroll overflow-y-auto flex-1 p-3 sm:p-4 space-y-4">
           {upcoming.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-sm text-gray-400">
@@ -114,9 +111,8 @@ const WorkshopsModal = ({ workshops, onClose }) => {
               <div
                 key={category}
                 id={`ws-cat-${category}`}
-                className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50"
+                className="border border-gray-100 rounded-2xl p-3 sm:p-4 bg-gray-50/50"
               >
-                {/* Category Title */}
                 <div className="mb-3">
                   <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
                     {category}
@@ -126,8 +122,6 @@ const WorkshopsModal = ({ workshops, onClose }) => {
                     {grouped[category].length > 1 ? "s" : ""}
                   </p>
                 </div>
-
-                {/* Workshops inside category */}
                 <div className="space-y-3">
                   {grouped[category].map((ws, i) => (
                     <WorkshopCard
