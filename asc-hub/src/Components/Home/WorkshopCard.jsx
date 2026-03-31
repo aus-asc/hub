@@ -8,7 +8,7 @@ import {
   faLocationDot,
   faHashtag,
 } from "@fortawesome/free-solid-svg-icons";
-import { categoryColors } from "../assets/utility";
+import { categoryColors } from "../../scripts/Home/utility";
 
 /**
  * datetime: ISO string e.g. "2025-04-03T15:00:00"
@@ -46,14 +46,20 @@ const WorkshopCard = ({
   const isPast = end && now > end;
 
   const formattedDate = start
-    ? start.toLocaleDateString("en-US", {
+    ? start.toLocaleDateString("en-AE", {
         weekday: "short",
         month: "short",
         day: "numeric",
+        timeZone: "Asia/Dubai",
       })
     : null;
+
   const formattedTime = start
-    ? start.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })
+    ? start.toLocaleTimeString("en-AE", {
+        hour: "numeric",
+        minute: "2-digit",
+        timeZone: "Asia/Dubai",
+      })
     : null;
 
   return (

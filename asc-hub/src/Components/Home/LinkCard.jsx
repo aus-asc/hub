@@ -1,9 +1,15 @@
-const LinkCard = ({ title, icon, link, color = "#000000" }) => {
+const LinkCard = ({
+  title,
+  icon,
+  link,
+  color = "#000000",
+  targetBlank = true,
+}) => {
   console.log(icon);
   return (
     <a
       href={link}
-      target="_blank"
+      target={targetBlank ? "_blank" : ""}
       className="group bg-white border border-gray-100 rounded-2xl p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-2.5 hover:shadow-md transition-all duration-200 text-center"
     >
       {/* Icon circle */}

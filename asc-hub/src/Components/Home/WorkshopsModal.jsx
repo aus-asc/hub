@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { faCalendarDays, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getUpcoming, categoryColors } from "../assets/utility";
+import { getUpcoming, categoryColors } from "../../scripts/Home/utility";
 import WorkshopCard from "./WorkshopCard";
 
 const WorkshopsModal = ({ workshops, onClose }) => {

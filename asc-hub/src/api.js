@@ -8,6 +8,7 @@ export const ACTIONS = {
   QUICK_LINKS: "quick_links",
   STAFF: "staff",
   RESOURCES: "resources",
+  LOCK_IN_LOUNGE: "lock_in_lounge",
 };
 
 export async function callAPI({ method = "GET", action, data = {} }) {

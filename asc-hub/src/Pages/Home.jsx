@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import EmployeeCard from "./EmployeeCard";
-import WorkshopCard from "./WorkshopCard";
-import DropDownList from "./DropDownList";
-import LinkCard from "./LinkCard";
+import EmployeeCard from "../Components/Home/EmployeeCard";
+import WorkshopCard from "../Components/Home/WorkshopCard";
+import DropDownList from "../Components/Home/DropDownList";
+import LinkCard from "../Components/Home/LinkCard";
 import {
   faClock,
   faLocationDot,
@@ -15,8 +15,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ascLogo from "../assets/asc-logo.jpg";
 import { ACTIONS, callAPI } from "../api";
-import WorkshopsModal from "./WorkshopsModal";
-import { getUpcoming } from "../assets/utility";
+import WorkshopsModal from "../Components/Home/WorkshopsModal";
+import { getUpcoming } from "../scripts/Home/utility";
+import { Footer } from "../Components/Footer";
 
 /* ── Skeleton primitives ── */
 const Shimmer = ({ className = "" }) => (
@@ -209,6 +210,13 @@ const Home = () => {
         ) : (
           data?.quick_links && (
             <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-3">
+              <LinkCard
+                title={"Lock-in Lounge"}
+                icon={"fa-lock"}
+                link={"/lock_in_lounge"}
+                color={"#20B2AA"}
+                targetBlank={false}
+              ></LinkCard>
               {data.quick_links.map((resource) => (
                 <LinkCard
                   key={resource.title}
@@ -264,7 +272,7 @@ const Home = () => {
                       category={ws.category}
                       datetime={ws.datetime}
                       facilitator={ws.facilitator}
-                      meetLink={ws.meetLink}
+                      meetLink={ws.meet_link}
                       location={ws.location}
                       week={ws.week}
                     />
@@ -522,32 +530,7 @@ const Home = () => {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-gray-100 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <div className="flex items-center gap-2">
-            <img
-              src={ascLogo}
-              alt="ASC"
-              className="h-7 w-7 rounded-full object-cover"
-            />
-            <span className="text-xs text-gray-400">
-              © 2026 Academic Support Center · AUS
-            </span>
-          </div>
-          <div className="flex gap-1">
-            {[
-              "bg-[#c8a135]",
-              "bg-[#8a72a8]",
-              "bg-[#b85450]",
-              "bg-[#4a9e6d]",
-              "bg-[#3d8cc4]",
-              "bg-[#c47a5a]",
-            ].map((c, i) => (
-              <div key={i} className={`w-2.5 h-2.5 rounded-full ${c}`} />
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer></Footer>
 
       {/* ── MODAL ── */}
       {showModal && (
