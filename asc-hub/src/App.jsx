@@ -5,7 +5,7 @@ import LockInLounge from "./Pages/LockInLounge";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/hub">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lock_in_lounge" element={<LockInLounge />} />

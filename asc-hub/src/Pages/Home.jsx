@@ -213,7 +213,7 @@ const Home = () => {
               <LinkCard
                 title={"Lock-in Lounge"}
                 icon={"fa-lock"}
-                link={"/lock_in_lounge"}
+                link={"/hub/lock_in_lounge"}
                 color={"#20B2AA"}
                 targetBlank={false}
               ></LinkCard>

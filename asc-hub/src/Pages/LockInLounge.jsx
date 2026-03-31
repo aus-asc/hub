@@ -15,6 +15,7 @@ import Spinner from "../Components/LockInLounge/Spinner";
 import ErrorState from "../Components/LockInLounge/ErrorState";
 import ascLogo from "../assets/asc-logo.jpg";
 import { Footer } from "../Components/Footer";
+import { Link } from "react-router-dom";
 
 export default function LockInLounge() {
   const [view, setView] = useState("today");
@@ -81,7 +82,7 @@ export default function LockInLounge() {
       {/* NAV */}
       <nav className="bg-white border-b border-gray-100 sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <div className="flex items-center gap-3">
               <img
                 src={ascLogo}
@@ -97,13 +98,13 @@ export default function LockInLounge() {
                 </p>
               </div>
             </div>
-          </a>
-          <a
-            href="/"
+          </Link>
+          <Link
+            to="/"
             className="text-xs sm:text-sm text-[#3d8cc4] font-medium hover:underline"
           >
             ← Back to Hub
-          </a>
+          </Link>
         </div>
       </nav>
 
