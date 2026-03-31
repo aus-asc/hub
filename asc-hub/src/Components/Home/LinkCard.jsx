@@ -5,7 +5,6 @@ const LinkCard = ({
   color = "#000000",
   targetBlank = true,
 }) => {
-  console.log(icon);
   return (
     <a
       href={link}
