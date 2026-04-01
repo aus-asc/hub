@@ -55,7 +55,14 @@ export default function Podium({ top3 }) {
             <p className="text-[10px] sm:text-xs font-bold text-gray-900 text-center leading-tight truncate w-full px-1">
               {entry.name.split(" ")[0]}
             </p>
-            <p className={`text-xs sm:text-sm font-bold ${c.text} mt-0.5`}>
+            {/* Score — primary */}
+            <p
+              className={`text-sm sm:text-base font-bold ${c.text} mt-0.5 leading-tight`}
+            >
+              {Math.round(entry.display_score)} pts
+            </p>
+            {/* Duration — secondary */}
+            <p className="text-[9px] sm:text-[10px] text-gray-400 leading-tight">
               {formatHours(entry.duration)}
             </p>
             {badge && <span className="text-xs mt-0.5">{badge.icon}</span>}

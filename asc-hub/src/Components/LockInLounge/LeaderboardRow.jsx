@@ -6,6 +6,7 @@ export default function LeaderboardRow({ entry, delay }) {
   const rank = Math.round(entry.rank);
   const badge = getStreakBadge(entry.streak);
   const qualifies = entry.duration * 60 >= CONFIG.MIN_DURATION_MINUTES;
+  const hasBoosted = entry.boosted_hours > 0;
 
   return (
     <div
@@ -31,28 +32,40 @@ export default function LeaderboardRow({ entry, delay }) {
             </span>
           )}
         </div>
-        <p className="text-[10px] sm:text-xs text-gray-400 mt-0.5">
-          {Math.round(entry.number_of_sessions)} session
-          {entry.number_of_sessions !== 1 ? "s" : ""}
-          {!qualifies && (
-            <span className="text-gray-400 italic"> · below minimum</span>
+        <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+          <p className="text-[10px] sm:text-xs text-gray-400">
+            {Math.round(entry.number_of_sessions)} session
+            {entry.number_of_sessions !== 1 ? "s" : ""} ·{" "}
+            {formatHours(entry.duration)}
+          </p>
+          {hasBoosted && (
+            <span className="text-[9px] sm:text-[10px] font-semibold text-[#4a9e6d] bg-[#4a9e6d]/10 px-1.5 py-0.5 rounded-md">
+              ⚡ {formatHours(entry.boosted_hours)} boosted
+            </span>
           )}
-        </p>
+          {!qualifies && (
+            <span className="text-[9px] sm:text-[10px] text-gray-400 italic">
+              below minimum
+            </span>
+          )}
+        </div>
       </div>
 
-      <span
-        className={`text-sm sm:text-base font-bold tabular-nums ${
-          rank === 1
-            ? "text-[#c8a135]"
-            : rank === 2
-              ? "text-gray-500"
-              : rank === 3
-                ? "text-[#c47a5a]"
-                : "text-[#4a9e6d]"
-        }`}
-      >
-        {formatHours(entry.duration)}
-      </span>
+      <div className="text-right">
+        <span
+          className={`text-sm sm:text-base font-bold tabular-nums ${
+            rank === 1
+              ? "text-[#c8a135]"
+              : rank === 2
+                ? "text-gray-500"
+                : rank === 3
+                  ? "text-[#c47a5a]"
+                  : "text-[#4a9e6d]"
+          }`}
+        >
+          {Math.round(entry.display_score)} pts
+        </span>
+      </div>
     </div>
   );
 }
