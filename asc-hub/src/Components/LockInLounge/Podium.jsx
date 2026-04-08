@@ -37,12 +37,7 @@ export default function Podium({ top3 }) {
         const rank = idx + 1;
         const c = PODIUM_COLORS[rank];
         const badge = getStreakBadge(entry.streak);
-        const initials = entry.name
-          .split(" ")
-          .map((n) => n[0])
-          .join("")
-          .slice(0, 2)
-          .toUpperCase();
+        const initials = entry.name.replace(/\./g, "").toUpperCase();
 
         return (
           <div key={idx} className="flex flex-col items-center w-24 sm:w-28">

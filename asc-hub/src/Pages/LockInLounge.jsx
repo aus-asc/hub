@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 
 export default function LockInLounge() {
   const [view, setView] = useState("today");
-  // const [apiData, setApiData] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
