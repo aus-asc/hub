@@ -391,7 +391,7 @@ const Home = () => {
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 items-start">
                       {members
                         .sort((a, b) => {
                           if (type === "faculty") {
@@ -447,6 +447,7 @@ const Home = () => {
                             officeHrs={s.office_hours}
                             color={s.color}
                             bookingLink={s.booking_link}
+                            meetingLink={s.meeting_link}
                             type={s.type}
                           />
                         ))}
