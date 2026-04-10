@@ -73,7 +73,7 @@ const EmployeeCard = ({
       );
     });
   };
-  console.log(meetingLink);
+
   const officeOpen = meetingLink ? isInOfficeHours() : false;
 
   return (
