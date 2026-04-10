@@ -8,7 +8,7 @@ export default function ErrorState({ onRetry }) {
       </p>
       <button
         onClick={onRetry}
-        className="text-xs font-semibold text-[#3d8cc4] border border-[#3d8cc4]/30 px-4 py-1.5 rounded-full hover:bg-[#3d8cc4]/5 transition-colors cursor-pointer"
+        className="text-xs font-semibold text-[var(--color-blue)] border border-[var(--color-blue)]/30 px-4 py-1.5 rounded-full hover:bg-[var(--color-blue)]/5 transition-colors cursor-pointer"
       >
         Retry
       </button>

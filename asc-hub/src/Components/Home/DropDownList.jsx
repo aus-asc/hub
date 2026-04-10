@@ -8,7 +8,7 @@ import {
 const DropDownList = ({
   title,
   listContent,
-  accentColor = "border-[#3d8cc4]",
+  accentColor = "border-[--color-blue]",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 

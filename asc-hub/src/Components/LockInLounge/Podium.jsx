@@ -2,22 +2,22 @@ import { formatHours, getStreakBadge } from "../../scripts/LockInLounge/utils";
 
 const PODIUM_COLORS = {
   1: {
-    avatar: "#c8a135",
-    ring: "ring-[#c8a135]/30",
-    text: "text-[#c8a135]",
-    bar: "bg-[#c8a135]/8 border-[#c8a135]/20",
+    avatar: "var(--color-gold)",
+    ring: "ring-[var(--color-gold)]/30",
+    text: "text-[var(--color-gold)]",
+    bar: "bg-[var(--color-gold)]/8 border-[var(--color-gold)]/20",
   },
   2: {
-    avatar: "#a8b4c0",
+    avatar: "var(--color-silver)",
     ring: "ring-gray-300/40",
     text: "text-gray-500",
     bar: "bg-gray-100 border-gray-200/60",
   },
   3: {
-    avatar: "#c47a5a",
-    ring: "ring-[#c47a5a]/30",
-    text: "text-[#c47a5a]",
-    bar: "bg-[#c47a5a]/8 border-[#c47a5a]/20",
+    avatar: "var(--color-bronze)",
+    ring: "ring-[var(--color-bronze)]/30",
+    text: "text-[var(--color-bronze)]",
+    bar: "bg-[var(--color-bronze)]/8 border-[var(--color-bronze)]/20",
   },
 };
 

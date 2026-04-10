@@ -3,7 +3,7 @@ const EmployeeCard = ({
   college,
   major,
   officeHrs,
-  color = "#000000",
+  color = "var(--color-fallback, #000000)",
   bookingLink,
   meetingLink,
 }) => {
@@ -101,7 +101,7 @@ const EmployeeCard = ({
 
       {/* Office hours */}
       {hours.length > 0 && hours[0] !== "" && (
-        <div className="border-t border-gray-50 pt-3 mt-auto space-y-1">
+        <div className="border-t border-gray-50 pt-3 mt-auto space-y-1 mb-3">
           {/* Live badge — shown only when currently in office hours */}
           {officeOpen && (
             <div className="flex items-center gap-1.5 mb-2">
@@ -157,7 +157,7 @@ const EmployeeCard = ({
           href={bookingLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 inline-block w-full text-center text-xs font-medium text-white bg-indigo-500 hover:bg-indigo-600 rounded-md px-3 py-1.5 transition-colors"
+          className="mt-2 inline-block w-full text-center text-xs font-medium text-white bg-[var(--color-burgundy)] hover:bg-[var(--color-burgundy-hover)] rounded-md px-3 py-1.5 transition-colors"
         >
           {bookingLink.startsWith("mailto") ? "Contact" : "Book Appointment"}
         </a>

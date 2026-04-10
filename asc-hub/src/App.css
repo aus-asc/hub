@@ -1,5 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
 
+/* ── ASC Color Palette ────────────────────────────────────────────────────── */
+:root {
+  /* Brand accent colors */
+  --color-burgundy: rgba(136, 0, 0, 0.8);
+  --color-burgundy-hover: rgba(136, 0, 0, 1);
+
+  --color-blue: #3d8cc4; /* Primary accent — links, highlights, spinners  */
+  --color-blue-dark: #1f6f8b; /* Darker blue — category text                   */
+  --color-gold: #c8a135; /* Gold — hero highlight, 1st place, stat cards   */
+  --color-gold-light: #dbb94e; /* Gold gradient end — rank badge                 */
+  --color-green: #4a9e6d; /* Green — live badge, success, boosts            */
+  --color-green-dark: #2e7d4f; /* Darker green — category text                   */
+  --color-green-hover: #3d8c60; /* Green hover — workshop join button             */
+  --color-bronze: #c47a5a; /* Bronze — 3rd place                             */
+  --color-bronze-light: #d49878; /* Bronze gradient end — rank badge               */
+  --color-red: #b85450; /* Red — streaks, location icon                   */
+  --color-purple: #8a72a8; /* Purple — footer dot                            */
+  --color-silver: #a8b4c0; /* Silver — 2nd place avatar                      */
+  --color-silver-light: #c0c8d0; /* Silver gradient end — rank badge               */
+  --color-maroon: #6b0000; /* Maroon — AUS university name text              */
+  --color-teal: #20b2aa; /* Teal — Lock-in Lounge quick link               */
+
+  /* Workshop category palette */
+  --color-cat-study-bg: #ffc271; /* Study Skills badge background              */
+  --color-cat-study-text: #b87400; /* Study Skills badge text                    */
+  --color-cat-aus-bg: #9adfb0; /* AUS Essentials badge background            */
+  --color-cat-aus-text: #2e7d4f; /* AUS Essentials badge text                  */
+  --color-cat-self-bg: #b79cc8; /* Self Care badge background                 */
+  --color-cat-self-text: #6a4c93; /* Self Care badge text                       */
+  --color-cat-time-bg: #63cdf5; /* Time Management badge background           */
+  --color-cat-time-text: #1f6f8b; /* Time Management badge text                 */
+  --color-cat-other-bg: #f5a9b8; /* Other category badge background            */
+  --color-cat-other-text: #a23b5a; /* Other category badge text                  */
+
+  /* UI grays (scrollbar) */
+  --color-scrollbar-thumb: var(--color-burgundy);
+  --color-scrollbar-track: #f1f5f9;
+}
+
 * {
   font-family: "DM Sans", sans-serif;
 }
@@ -13,7 +52,7 @@ html {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 transparent;
+  scrollbar-color: var(--color-scrollbar-thumb) transparent;
 }
 
 /* Webkit (Chrome, Safari, Edge) — global */
@@ -27,13 +66,13 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-scrollbar-thumb);
   border-radius: 999px;
   transition: background 0.2s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3d8cc4;
+  background: var(--color-scrollbar-thumb);
 }
 
 ::-webkit-scrollbar-corner {
@@ -43,7 +82,7 @@ html {
 /* ── Modal inner scroll (tighter, accent-colored) ────────────────────────── */
 .modal-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #3d8cc4 #f1f5f9;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
 
 .modal-scroll::-webkit-scrollbar {
@@ -51,15 +90,15 @@ html {
 }
 
 .modal-scroll::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-scrollbar-track);
   border-radius: 999px;
 }
 
 .modal-scroll::-webkit-scrollbar-thumb {
-  background: #3d8cc4;
+  background: var(--color-scrollbar-thumb);
   border-radius: 999px;
 }
 
 .modal-scroll::-webkit-scrollbar-thumb:hover {
-  background: #c8a135;
+  background: var(--color-gold);
 }

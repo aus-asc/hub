@@ -2,7 +2,7 @@ const LinkCard = ({
   title,
   icon,
   link,
-  color = "#000000",
+  color = "var(--color-fallback, #000000)",
   targetBlank = true,
 }) => {
   return (

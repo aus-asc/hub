@@ -9,7 +9,7 @@ export default function Sidebar() {
         style={{ animationDelay: "0.3s" }}
       >
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#c8a135]/10 flex items-center justify-center text-sm shrink-0">
+          <div className="w-9 h-9 rounded-full bg-[var(--color-gold)]/10 flex items-center justify-center text-sm shrink-0">
             ✨
           </div>
           <div>
@@ -65,7 +65,7 @@ export default function Sidebar() {
             "Come back daily to build a streak and earn badges.",
           ].map((text, i) => (
             <div key={i} className="flex items-start gap-3">
-              <div className="w-5 h-5 rounded-full bg-[#3d8cc4]/10 flex items-center justify-center text-[10px] font-bold text-[#3d8cc4] shrink-0 mt-0.5">
+              <div className="w-5 h-5 rounded-full bg-[var(--color-blue)]/10 flex items-center justify-center text-[10px] font-bold text-[var(--color-blue)] shrink-0 mt-0.5">
                 {i + 1}
               </div>
               <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed">

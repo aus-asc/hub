@@ -14,6 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ascLogo from "../assets/asc-logo.jpg";
+import ausLogo from "../assets/aus-logo.png";
 import { ACTIONS, callAPI } from "../api";
 import WorkshopsModal from "../Components/Home/WorkshopsModal";
 import { getUpcoming } from "../scripts/Home/utility";
@@ -87,20 +88,26 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
       {/* ── NAV ── */}
-      <nav className="bg-white border-b border-gray-100 sticky top-0 z-40">
+      <nav className="bg-white border-b-4 border-[var(--color-burgundy)] sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
+            <img
+              src={ausLogo}
+              alt="AUS Logo"
+              className="h-9 sm:h-10 object-contain"
+            />
+            <div className="w-px h-8 bg-gray-200 hidden sm:block" />
             <img
               src={ascLogo}
               alt="ASC Logo"
               className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover"
             />
             <div>
+              <p className="text-xs text-[var(--color-maroon)] leading-tight hidden sm:block font-medium">
+                American University of Sharjah
+              </p>
               <p className="text-sm font-bold text-gray-900 leading-tight">
                 Academic Support Center
-              </p>
-              <p className="text-xs text-gray-400 leading-tight hidden sm:block">
-                American University of Sharjah
               </p>
             </div>
           </div>
@@ -152,13 +159,13 @@ const Home = () => {
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 lg:py-24 flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="flex-1 text-center md:text-left">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[#3d8cc4] mb-4">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--color-blue)] mb-4">
               Your Academic Home
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 sm:mb-5">
               We're here to help
               <br />
-              you <span className="text-[#c8a135]">succeed.</span>
+              you <span className="text-[var(--color-gold)]">succeed.</span>
             </h1>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-md mb-6 sm:mb-8 mx-auto md:mx-0">
               Welcome to the Academic Support Center; we're glad you're here!
@@ -214,7 +221,7 @@ const Home = () => {
                 title={"Lock-in Lounge"}
                 icon={"fa-lock"}
                 link={"/hub/lock_in_lounge"}
-                color={"#20B2AA"}
+                color={"var(--color-teal)"}
                 targetBlank={false}
               ></LinkCard>
               {data.quick_links.map((resource) => (
@@ -246,7 +253,7 @@ const Home = () => {
             {!loading && (
               <button
                 onClick={() => setShowModal(true)}
-                className="text-sm text-[#3d8cc4] font-medium hover:underline flex items-center gap-1 cursor-pointer"
+                className="text-sm text-[var(--color-blue)] font-medium hover:underline flex items-center gap-1 cursor-pointer"
               >
                 See all{" "}
                 <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
@@ -353,21 +360,21 @@ const Home = () => {
                 {
                   type: "faculty",
                   label: "Faculty",
-                  accent: "bg-[#3d8cc4]",
+                  accent: "bg-[var(--color-blue)]",
                   description:
                     "Our academic coaches are experienced university faculty who provide in-depth guidance on academics, course planning, and university life. As the most seasoned members of the ASC, they bring a wealth of knowledge to every session.",
                 },
                 {
                   type: "peer_mentor",
                   label: "Student Peer Mentors",
-                  accent: "bg-[#4a9e6d]",
+                  accent: "bg-[var(--color-green)]",
                   description:
                     "Peer mentors are fellow students who hold regular office hours for one-on-one sessions. Whether you need academic advice or just want to talk through university life, they're here to listen and help.",
                 },
                 {
                   type: "ambassador",
                   label: "Student Ambassadors",
-                  accent: "bg-[#c8a135]",
+                  accent: "bg-[var(--color-gold)]",
                   description:
                     "Ambassadors are the face of the ASC on campus. They run workshops, raise awareness about our services, and make sure every student knows where to find support.",
                 },
@@ -478,28 +485,28 @@ const Home = () => {
               label: "Email",
               value: "asc@aus.edu",
               href: "mailto:asc@aus.edu",
-              color: "text-[#c8a135]",
+              color: "text-[var(--color-gold)]",
             },
             {
               icon: faPhone,
               label: "Phone",
               value: "06 515 2096",
               href: "tel:065152096",
-              color: "text-[#4a9e6d]",
+              color: "text-[var(--color-green)]",
             },
             {
               icon: faClock,
               label: "Hours",
               value: "Mon – Thu, 8 AM – 5 PM",
               href: null,
-              color: "text-[#3d8cc4]",
+              color: "text-[var(--color-blue)]",
             },
             {
               icon: faLocationDot,
               label: "Location",
               value: "Main Building, M-M01",
               href: null,
-              color: "text-[#b85450]",
+              color: "text-[var(--color-red)]",
             },
           ].map(({ icon, label, value, href, color }) => (
             <div

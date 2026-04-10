@@ -14,6 +14,7 @@ import Sidebar from "../Components/LockInLounge/Sidebar";
 import Spinner from "../Components/LockInLounge/Spinner";
 import ErrorState from "../Components/LockInLounge/ErrorState";
 import ascLogo from "../assets/asc-logo.jpg";
+import ausLogo from "../assets/aus-logo.png";
 import { Footer } from "../Components/Footer";
 import { Link } from "react-router-dom";
 
@@ -79,28 +80,34 @@ export default function LockInLounge() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
       {/* NAV */}
-      <nav className="bg-white border-b border-gray-100 sticky top-0 z-40">
+      <nav className="bg-white border-b-4 border-[var(--color-burgundy)] sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
             <div className="flex items-center gap-3">
+              <img
+                src={ausLogo}
+                alt="AUS Logo"
+                className="h-9 sm:h-10 object-contain"
+              />
+              <div className="w-px h-8 bg-gray-200 hidden sm:block" />
               <img
                 src={ascLogo}
                 alt="ASC Logo"
                 className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover"
               />
               <div>
+                <p className="text-xs text-[var(--color-maroon)] leading-tight hidden sm:block font-medium">
+                  American University of Sharjah
+                </p>
                 <p className="text-sm font-bold text-gray-900 leading-tight">
                   Academic Support Center
-                </p>
-                <p className="text-xs text-gray-400 leading-tight hidden sm:block">
-                  American University of Sharjah
                 </p>
               </div>
             </div>
           </Link>
           <Link
             to="/"
-            className="text-xs sm:text-sm text-[#3d8cc4] font-medium hover:underline"
+            className="text-xs sm:text-sm text-[var(--color-blue)] font-medium hover:underline"
           >
             ← Back to Hub
           </Link>
@@ -110,11 +117,12 @@ export default function LockInLounge() {
       {/* HERO */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[#3d8cc4] mb-3">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--color-blue)] mb-3">
             Lock-in Lounge
           </span>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-3">
-            Who's locking in the <span className="text-[#c8a135]">most?</span>
+            Who's locking in the{" "}
+            <span className="text-[var(--color-gold)]">most?</span>
           </h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-lg mb-5">
             Join the virtual study room, stay focused, and climb the
@@ -122,7 +130,7 @@ export default function LockInLounge() {
           </p>
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2 text-sm text-gray-500">
-              <span className="w-2 h-2 rounded-full bg-[#4a9e6d] animate-pulse inline-block" />
+              <span className="w-2 h-2 rounded-full bg-[var(--color-green)] animate-pulse inline-block" />
               Open daily {CONFIG.LOUNGE_HOURS}
             </div>
             <span className="text-gray-300 hidden sm:inline">·</span>
@@ -158,28 +166,28 @@ export default function LockInLounge() {
             icon="⏱"
             value={formatHours(stats.totalHours)}
             label="Total Study Time"
-            color="#4a9e6d"
+            color="var(--color-green)"
             delay={0.05}
           />
           <StatCard
             icon="🏆"
             value={formatHours(stats.longestHours)}
             label="Longest Session"
-            color="#c8a135"
+            color="var(--color-gold)"
             delay={0.1}
           />
           <StatCard
             icon="👥"
             value={Math.round(stats.participants)}
             label="Participants"
-            color="#3d8cc4"
+            color="var(--color-blue)"
             delay={0.15}
           />
           <StatCard
             icon="📍"
             value={formatPeakHour(stats.peakHour)}
             label="Peak Hour"
-            color="#b85450"
+            color="var(--color-red)"
             delay={0.2}
           />
         </div>

@@ -11,7 +11,7 @@ export default function LeaderboardRow({ entry, delay }) {
   return (
     <div
       className={`flex items-center gap-3 px-4 sm:px-5 py-3 border-b border-gray-50 last:border-b-0 transition-colors hover:bg-gray-50/60 anim-fade-up ${
-        rank <= 3 ? "bg-[#c8a135]/2" : ""
+        rank <= 3 ? "bg-[var(--color-gold)]/2" : ""
       } ${!qualifies ? "opacity-40" : ""}`}
       style={{ animationDelay: `${delay}s` }}
     >
@@ -27,7 +27,7 @@ export default function LeaderboardRow({ entry, delay }) {
             {entry.name}
           </span>
           {badge && (
-            <span className="text-[9px] sm:text-[10px] font-bold text-[#b85450] bg-[#b85450]/10 px-1.5 py-0.5 rounded-md anim-streak">
+            <span className="text-[9px] sm:text-[10px] font-bold text-[var(--color-red)] bg-[var(--color-red)]/10 px-1.5 py-0.5 rounded-md anim-streak">
               {badge.icon} {Math.round(entry.streak)}d
             </span>
           )}
@@ -39,7 +39,7 @@ export default function LeaderboardRow({ entry, delay }) {
             {formatHours(entry.duration)}
           </p>
           {hasBoosted && (
-            <span className="text-[9px] sm:text-[10px] font-semibold text-[#4a9e6d] bg-[#4a9e6d]/10 px-1.5 py-0.5 rounded-md">
+            <span className="text-[9px] sm:text-[10px] font-semibold text-[var(--color-green)] bg-[var(--color-green)]/10 px-1.5 py-0.5 rounded-md">
               ⚡ {formatHours(entry.boosted_hours)} boosted
             </span>
           )}
@@ -55,12 +55,12 @@ export default function LeaderboardRow({ entry, delay }) {
         <span
           className={`text-sm sm:text-base font-bold tabular-nums ${
             rank === 1
-              ? "text-[#c8a135]"
+              ? "text-[var(--color-gold)]"
               : rank === 2
                 ? "text-gray-500"
                 : rank === 3
-                  ? "text-[#c47a5a]"
-                  : "text-[#4a9e6d]"
+                  ? "text-[var(--color-bronze)]"
+                  : "text-[var(--color-green)]"
           }`}
         >
           {Math.round(entry.display_score)} pts

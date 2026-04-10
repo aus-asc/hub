@@ -65,13 +65,13 @@ const WorkshopCard = ({
   return (
     <div
       className={`relative bg-white border rounded-2xl flex flex-col gap-3 transition-all duration-200 hover:shadow-md h-full
-        ${isLive ? "border-[#4a9e6d] ring-1 ring-[#4a9e6d]/30" : "border-gray-100"}
+        ${isLive ? "border-[var(--color-green)] ring-1 ring-[var(--color-green)]/30" : "border-gray-100"}
         ${compact ? "p-3 sm:p-4" : "p-4 sm:p-5"}
       `}
     >
       {/* Live badge */}
       {isLive && (
-        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#4a9e6d] text-white text-[10px] font-bold uppercase tracking-widest px-2 sm:px-2.5 py-1 rounded-full">
+        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[var(--color-green)] text-white text-[10px] font-bold uppercase tracking-widest px-2 sm:px-2.5 py-1 rounded-full">
           <FontAwesomeIcon
             icon={faCircle}
             className="text-[6px] animate-pulse"
@@ -131,7 +131,7 @@ const WorkshopCard = ({
         <a
           href={meetLink}
           className={`mt-1 inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-white px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full self-start transition-colors
-            ${isLive ? "bg-[#4a9e6d] hover:bg-[#3d8c60]" : "bg-gray-900 hover:bg-gray-700"}
+            ${isLive ? "bg-[var(--color-green)] hover:bg-[var(--color-greenhover))]" : "bg-gray-900 hover:bg-gray-700"}
           `}
         >
           <FontAwesomeIcon icon={faVideo} className="text-[10px]" />
