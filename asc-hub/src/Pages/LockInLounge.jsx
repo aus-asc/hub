@@ -125,8 +125,8 @@ export default function LockInLounge() {
             <span className="text-[var(--color-gold)]">most?</span>
           </h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-lg mb-5">
-            Join the virtual study room, stay focused, and climb the
-            leaderboard. Study during peer-led slots for a 1.5x time multiplier.
+            Join the virtual study room, stay focused and climb the leaderboard.
+            Study during peer-led sessions to earn a 1.5x time multiplier.
           </p>
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2 text-sm text-gray-500">

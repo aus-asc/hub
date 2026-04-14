@@ -46,12 +46,16 @@ const WorkshopCard = ({
   const isPast = end && now > end;
 
   const formattedDate = start
-    ? start.toLocaleDateString("en-AE", {
-        weekday: "short",
+    ? `${start.toLocaleDateString("en-AE", {
         month: "short",
+        timeZone: "Asia/Dubai",
+      })} ${start.toLocaleDateString("en-AE", {
         day: "numeric",
         timeZone: "Asia/Dubai",
-      })
+      })}, ${start.toLocaleDateString("en-AE", {
+        weekday: "short",
+        timeZone: "Asia/Dubai",
+      })}`
     : null;
 
   const formattedTime = start

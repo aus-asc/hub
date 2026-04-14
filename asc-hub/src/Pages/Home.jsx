@@ -167,13 +167,20 @@ const Home = () => {
               <br />
               you <span className="text-[var(--color-gold)]">succeed.</span>
             </h1>
-            <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-md mb-6 sm:mb-8 mx-auto md:mx-0">
-              Welcome to the Academic Support Center; we're glad you're here!
-              Our goal is to help you think about university education as a
-              world of possibilities. We recognize academic coaching as a
-              critical component of the educational experience at AUS. Discover
-              how we can support your success.
+            <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-md mb-4 sm:mb-6 mx-auto md:mx-0">
+              Welcome to the Academic Support Center-owe're glad you're here! We
+              are here to help you make the most of your university experience
+              and discover a world of possibilities. From building strong study
+              strategies to achieving your academic goals, we believe academic
+              coaching is an essential component of your educational experience.
+              We are ready to guide you every step of the way.
             </p>
+            <div className="flex items-center gap-3 justify-center md:justify-start mb-4 sm:mb-6">
+              <span className="block w-8 h-px bg-[var(--color-gold)]" />
+              <span className="text-sm font-semibold tracking-wide text-[var(--color-gold)]">
+                Let's get started!
+              </span>
+            </div>
             <div className="flex gap-3 flex-wrap justify-center md:justify-start">
               <a
                 href="#workshops"
@@ -206,7 +213,7 @@ const Home = () => {
         className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14"
       >
         <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-6">
-          Quick Access
+          How can we help you?
         </h2>
         {loading ? (
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -244,7 +251,7 @@ const Home = () => {
           <div className="flex items-end justify-between mb-6 sm:mb-8">
             <div>
               <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-1">
-                Live & Upcoming
+                Live and Upcoming
               </h2>
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
                 Workshops
@@ -295,7 +302,7 @@ const Home = () => {
           Explore
         </h2>
         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
-          Resources & Support
+          Resources and Support
         </h3>
 
         {loading ? (
@@ -324,9 +331,9 @@ const Home = () => {
           <h2 className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-1">
             Meet the Team
           </h2>
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-8 sm:mb-10">
+          {/* <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-8 sm:mb-10">
             Our Staff
-          </h3>
+          </h3> */}
 
           {loading ? (
             <div className="space-y-12">
@@ -359,24 +366,24 @@ const Home = () => {
               const sections = [
                 {
                   type: "faculty",
-                  label: "Faculty",
+                  label: "Academic Coaches",
                   accent: "bg-[var(--color-blue)]",
                   description:
-                    "Our academic coaches are experienced university faculty who provide in-depth guidance on academics, course planning, and university life. As the most seasoned members of the ASC, they bring a wealth of knowledge to every session.",
+                    "Our academic coaches are experienced university faculty dedicated to supporting your success. They offer personalized guidance on academics, course planning and university life, bringing real insight and experience to every session.",
                 },
                 {
                   type: "peer_mentor",
                   label: "Student Peer Mentors",
                   accent: "bg-[var(--color-green)]",
                   description:
-                    "Peer mentors are fellow students who hold regular office hours for one-on-one sessions. Whether you need academic advice or just want to talk through university life, they're here to listen and help.",
+                    "Peer mentors are fellow students who hold regular office hours for one-on-one sessions. Whether you are looking for academic advice or just want to talk through university life, they're here to listen, guide and help.",
                 },
                 {
                   type: "ambassador",
                   label: "Student Ambassadors",
                   accent: "bg-[var(--color-gold)]",
                   description:
-                    "Ambassadors are the face of the ASC on campus. They run workshops, raise awareness about our services, and make sure every student knows where to find support.",
+                    "Ambassadors are the face of the ASC on campus. They lead workshops, raise awareness about our services and help connect students with the support they need.",
                 },
               ];
 
@@ -497,7 +504,7 @@ const Home = () => {
             {
               icon: faClock,
               label: "Hours",
-              value: "Mon – Thu, 8 AM – 5 PM",
+              value: "Monday - Thursday, 8 AM - 5 PM",
               href: null,
               color: "text-[var(--color-blue)]",
             },
