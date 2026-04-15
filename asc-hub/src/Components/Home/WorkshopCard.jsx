@@ -135,7 +135,7 @@ const WorkshopCard = ({
         <a
           href={meetLink}
           className={`mt-1 inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-white px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full self-start transition-colors
-            ${isLive ? "bg-[var(--color-green)] hover:bg-[var(--color-greenhover))]" : "bg-gray-900 hover:bg-gray-700"}
+            ${isLive ? "bg-[var(--color-green)] hover:bg-[var(--color-green-hover))]" : "bg-gray-900 hover:bg-gray-700"}
           `}
         >
           <FontAwesomeIcon icon={faVideo} className="text-[10px]" />

@@ -168,12 +168,13 @@ const Home = () => {
               you <span className="text-[var(--color-gold)]">succeed.</span>
             </h1>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-md mb-4 sm:mb-6 mx-auto md:mx-0">
-              Welcome to the Academic Support Center-owe're glad you're here! We
-              are here to help you make the most of your university experience
-              and discover a world of possibilities. From building strong study
-              strategies to achieving your academic goals, we believe academic
-              coaching is an essential component of your educational experience.
-              We are ready to guide you every step of the way.
+              Welcome to the Academic Support Center - we're glad you're here!
+              We are here to help you make the most of your university
+              experience and discover a world of possibilities. From building
+              strong study strategies to achieving your academic goals, we
+              believe the Academic Support Center is an essential component of
+              your educational experience. We are ready to guide you every step
+              of the way.
             </p>
             <div className="flex items-center gap-3 justify-center md:justify-start mb-4 sm:mb-6">
               <span className="block w-8 h-px bg-[var(--color-gold)]" />
@@ -369,7 +370,7 @@ const Home = () => {
                   label: "Academic Coaches",
                   accent: "bg-[var(--color-blue)]",
                   description:
-                    "Our academic coaches are experienced university faculty dedicated to supporting your success. They offer personalized guidance on academics, course planning and university life, bringing real insight and experience to every session.",
+                    "Our academic coaches are experienced university staff dedicated to supporting your success. They offer personalized guidance to help students set goals, develop effective learning strategies and improve their time management skills.",
                 },
                 {
                   type: "peer_mentor",
