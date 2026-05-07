@@ -1,22 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* ── ASC Color Palette ────────────────────────────────────────────────────── */
 :root {
   /* Brand accent colors */
-  --color-burgundy: rgba(136, 0, 0, 0.8);
-  --color-burgundy-hover: rgba(136, 0, 0, 1);
+  --color-burgundy: rgba(179, 35, 23, 0.8);
+  --color-burgundy-hover: rgba(179, 35, 23, 1);
 
-  --color-blue: #3d8cc4; /* Primary accent — links, highlights, spinners  */
+  --color-blue: #0083bc; /* Primary accent — links, highlights, spinners  */
   --color-blue-dark: #1f6f8b; /* Darker blue — category text                   */
-  --color-gold: #c8a135; /* Gold — hero highlight, 1st place, stat cards   */
+  --color-gold: #edba37; /* Gold — hero highlight, 1st place, stat cards   */
   --color-gold-light: #dbb94e; /* Gold gradient end — rank badge                 */
-  --color-green: #4a9e6d; /* Green — live badge, success, boosts            */
+  --color-green: #30a361; /* Green — live badge, success, boosts            */
   --color-green-dark: #2e7d4f; /* Darker green — category text                   */
   --color-green-hover: #3d8c60; /* Green hover — workshop join button             */
-  --color-bronze: #c47a5a; /* Bronze — 3rd place                             */
+  --color-bronze: #c5695e; /* Bronze — 3rd place                             */
   --color-bronze-light: #d49878; /* Bronze gradient end — rank badge               */
-  --color-red: #b85450; /* Red — streaks, location icon                   */
-  --color-purple: #8a72a8; /* Purple — footer dot                            */
+  --color-red: #a63a3f; /* Red — streaks, location icon                   */
+  --color-purple: #8378aa; /* Purple — footer dot                            */
   --color-silver: #a8b4c0; /* Silver — 2nd place avatar                      */
   --color-silver-light: #c0c8d0; /* Silver gradient end — rank badge               */
   --color-maroon: #6b0000; /* Maroon — AUS university name text              */
@@ -40,7 +41,8 @@
 }
 
 * {
-  font-family: "DM Sans", sans-serif;
+  /* font-family: "DM Sans", sans-serif; */
+  font-family: "Roboto", sans-serif;
 }
 
 html {

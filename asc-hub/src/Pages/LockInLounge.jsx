@@ -13,10 +13,13 @@ import LeaderboardRow from "../Components/LockInLounge/LeaderboardRow";
 import Sidebar from "../Components/LockInLounge/Sidebar";
 import Spinner from "../Components/LockInLounge/Spinner";
 import ErrorState from "../Components/LockInLounge/ErrorState";
-import ascLogo from "../assets/asc-logo.jpg";
-import ausLogo from "../assets/aus-logo.png";
+import ascLogo from "../assets/asc-logo-circle.svg";
+import ascLogoNoCircle from "../assets/asc-logo-no-circle.svg";
+import ausLogo from "../assets/aus-logo-bilingual.svg";
 import { Footer } from "../Components/Footer";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function LockInLounge() {
   const [view, setView] = useState("today");
@@ -81,35 +84,39 @@ export default function LockInLounge() {
     <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
       {/* NAV */}
       <nav className="bg-white border-b-4 border-[var(--color-burgundy)] sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-5">
               <img
                 src={ausLogo}
                 alt="AUS Logo"
-                className="h-9 sm:h-10 object-contain"
+                className="h-6 sm:h-7 object-contain"
               />
-              <div className="w-px h-8 bg-gray-200 hidden sm:block" />
+              <div className="w-px h-8 bg-gray-200 sm:block" />
               <img
-                src={ascLogo}
+                src={ascLogoNoCircle}
                 alt="ASC Logo"
-                className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover"
+                className="h-7 sm:h-8 object-cover"
               />
               <div>
                 <p className="text-xs text-[var(--color-maroon)] leading-tight hidden sm:block font-medium">
-                  American University of Sharjah
+                  {/* American University of Sharjah */}
                 </p>
                 <p className="text-sm font-bold text-gray-900 leading-tight">
-                  Academic Support Center
+                  {/* Academic Support Center */}
                 </p>
               </div>
             </div>
           </Link>
           <Link
             to="/"
-            className="text-xs sm:text-sm text-[var(--color-blue)] font-medium hover:underline"
+            className="text-md text-gray-500 hover:text-gray-900 transition-colors font-medium flex items-center"
           >
-            ← Back to Hub
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              className="mr-2 text-sm"
+            ></FontAwesomeIcon>
+            Back to Hub
           </Link>
         </div>
       </nav>
@@ -117,12 +124,12 @@ export default function LockInLounge() {
       {/* HERO */}
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--color-blue)] mb-3">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-gray-400 mb-3">
             Lock-in Lounge
           </span>
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-3">
             Who's locking in the{" "}
-            <span className="text-[var(--color-gold)]">most?</span>
+            <span className="text-[var(--color-burgundy)]">most?</span>
           </h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-lg mb-5">
             Join the virtual study room, stay focused and climb the leaderboard.

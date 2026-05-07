@@ -7,6 +7,7 @@ import {
   faCircle,
   faLocationDot,
   faHashtag,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import { categoryColors } from "../../scripts/Home/utility";
 
@@ -46,16 +47,7 @@ const WorkshopCard = ({
   const isPast = end && now > end;
 
   const formattedDate = start
-    ? `${start.toLocaleDateString("en-AE", {
-        month: "short",
-        timeZone: "Asia/Dubai",
-      })} ${start.toLocaleDateString("en-AE", {
-        day: "numeric",
-        timeZone: "Asia/Dubai",
-      })}, ${start.toLocaleDateString("en-AE", {
-        weekday: "short",
-        timeZone: "Asia/Dubai",
-      })}`
+    ? `${start.toLocaleDateString("en-AE", { month: "short", timeZone: "Asia/Dubai" })} ${start.toLocaleDateString("en-AE", { day: "numeric", timeZone: "Asia/Dubai" })}, ${start.toLocaleDateString("en-AE", { weekday: "short", timeZone: "Asia/Dubai" })}`
     : null;
 
   const formattedTime = start
@@ -66,82 +58,101 @@ const WorkshopCard = ({
       })
     : null;
 
+  // Extract the raw Tailwind color class name to derive a bg for the bell icon
+  // e.g. colors.text = "text-purple-600" → we want bg-purple-600
+  const bellColor = colors.text.match(/#[0-9A-Fa-f]{6}/)?.[0];
+
   return (
-    <div
-      className={`relative bg-white border rounded-2xl flex flex-col gap-3 transition-all duration-200 hover:shadow-md h-full
-        ${isLive ? "border-[var(--color-green)] ring-1 ring-[var(--color-green)]/30" : "border-gray-100"}
-        ${compact ? "p-3 sm:p-4" : "p-4 sm:p-5"}
-      `}
-    >
-      {/* Live badge */}
-      {isLive && (
-        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[var(--color-green)] text-white text-[10px] font-bold uppercase tracking-widest px-2 sm:px-2.5 py-1 rounded-full">
-          <FontAwesomeIcon
-            icon={faCircle}
-            className="text-[6px] animate-pulse"
-          />
-          <span className="hidden xs:inline">Live Now</span>
+    <div className={`relative pt-8 ${compact ? "p-3 sm:p-4" : "p-4 sm:p-5"}`}>
+      {/* Outer colored wrapper */}
+      <div className={`relative ${colors.bg} rounded-3xl pt-8 pb-4 px-4`}>
+        {/* Bell icon — floats above, centered */}
+        <div
+          className={`absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full flex items-center justify-center shadow-md`}
+          style={{ backgroundColor: bellColor }}
+        >
+          <FontAwesomeIcon icon={faBell} className="text-white text-lg" />
         </div>
-      )}
 
-      {/* Category badge */}
-      {category && (
-        <span
-          className={`inline-flex self-start text-[10px] sm:text-xs font-semibold px-2 sm:px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}
-        >
-          {category}
-        </span>
-      )}
-
-      {/* Title */}
-      <h4
-        className={`font-bold text-gray-900 leading-snug ${compact ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"}`}
-      >
-        {title}
-      </h4>
-
-      {/* Meta */}
-      <div className="space-y-1.5 flex-1">
-        {facilitator && (
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
-            <FontAwesomeIcon icon={faUser} className="w-3 shrink-0" />
-            <span className="truncate">{facilitator}</span>
+        {/* Live badge */}
+        {isLive && (
+          <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-[var(--color-green)] text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+            <FontAwesomeIcon
+              icon={faCircle}
+              className="text-[6px] animate-pulse"
+            />
+            <span>Live Now</span>
           </div>
         )}
-        {formattedDate && (
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
-            <FontAwesomeIcon icon={faClock} className="w-3 shrink-0" />
-            <span>
-              {formattedDate} · {formattedTime}
+
+        {/* Inner white card */}
+        <div
+          className={`bg-white rounded-2xl flex flex-col gap-3 ${compact ? "p-3 sm:p-4" : "p-4 sm:p-5"}`}
+        >
+          {/* Category badge */}
+          {category && (
+            <span
+              className={`inline-flex self-start text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}
+            >
+              {category}
             </span>
-          </div>
-        )}
-        {location && location !== "" && (
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
-            <FontAwesomeIcon icon={faLocationDot} className="w-3 shrink-0" />
-            <span className="truncate">{location}</span>
-          </div>
-        )}
-        {week && week !== "" && (
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400">
-            <FontAwesomeIcon icon={faHashtag} className="w-3 shrink-0" />
-            <span>Week {week}</span>
-          </div>
-        )}
-      </div>
+          )}
 
-      {/* Join button */}
-      {meetLink && !isPast && (
-        <a
-          href={meetLink}
-          className={`mt-1 inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-white px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full self-start transition-colors
-            ${isLive ? "bg-[var(--color-green)] hover:bg-[var(--color-green-hover))]" : "bg-gray-900 hover:bg-gray-700"}
-          `}
-        >
-          <FontAwesomeIcon icon={faVideo} className="text-[10px]" />
-          {isLive ? "Join Now" : "Join Online"}
-        </a>
-      )}
+          {/* Title */}
+          <h4
+            className={`font-bold leading-snug ${colors.text} ${compact ? "text-sm" : "text-lg sm:text-xl"}`}
+          >
+            {title}
+          </h4>
+
+          {/* Meta */}
+          <div className="space-y-2 flex-1">
+            {facilitator && (
+              <div className="flex items-center gap-2 text-[11px] sm:text-xs text-gray-400">
+                <FontAwesomeIcon icon={faUser} className="w-3 shrink-0" />
+                <span className="truncate">{facilitator}</span>
+              </div>
+            )}
+            {formattedDate && (
+              <div className="flex items-center gap-2 text-[11px] sm:text-xs text-gray-400">
+                <FontAwesomeIcon icon={faClock} className="w-3 shrink-0" />
+                <span>
+                  {formattedDate} · {formattedTime}
+                </span>
+              </div>
+            )}
+            {location && location !== "" && (
+              <div className="flex items-center gap-2 text-[11px] sm:text-xs text-gray-400">
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className="w-3 shrink-0"
+                />
+                <span className="truncate">{location}</span>
+              </div>
+            )}
+            {week && week !== "" && (
+              <div className="flex items-center gap-2 text-[11px] sm:text-xs text-gray-400">
+                <FontAwesomeIcon icon={faHashtag} className="w-3 shrink-0" />
+                <span>Week {week}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Join button */}
+          {meetLink && !isPast && (
+            <a
+              href={meetLink}
+              target="_blank"
+              className={`mt-2 inline-flex items-center justify-center gap-2 text-[11px] sm:text-xs font-semibold text-white px-4 py-2.5 rounded-full w-full transition-colors
+                ${isLive ? "bg-[var(--color-green)] hover:bg-[var(--color-green-hover)]" : "bg-gray-900 hover:bg-gray-700"}
+              `}
+            >
+              <FontAwesomeIcon icon={faVideo} />
+              {isLive ? "Join Now" : "Join Online"}
+            </a>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

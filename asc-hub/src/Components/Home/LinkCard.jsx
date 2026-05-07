@@ -3,12 +3,14 @@ const LinkCard = ({
   icon,
   link,
   color = "var(--color-fallback, #000000)",
-  targetBlank = true,
+  // targetBlank = true,
+  target = "",
 }) => {
   return (
     <a
       href={link}
-      target={targetBlank ? "_blank" : ""}
+      // target={targetBlank ? "_blank" : ""}
+      target={target}
       className="group bg-white border border-gray-100 rounded-2xl p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-2.5 hover:shadow-md transition-all duration-200 text-center"
     >
       {/* Icon circle */}

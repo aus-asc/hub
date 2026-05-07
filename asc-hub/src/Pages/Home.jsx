@@ -13,8 +13,9 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ascLogo from "../assets/asc-logo.jpg";
-import ausLogo from "../assets/aus-logo.png";
+import ascLogo from "../assets/asc-logo-circle.svg";
+import ascLogoNoCircle from "../assets/asc-logo-no-circle.svg";
+import ausLogo from "../assets/aus-logo-bilingual.svg";
 import { ACTIONS, callAPI } from "../api";
 import WorkshopsModal from "../Components/Home/WorkshopsModal";
 import { getUpcoming } from "../scripts/Home/utility";
@@ -89,31 +90,31 @@ const Home = () => {
     <div className="min-h-screen bg-gray-50 font-sans">
       {/* ── NAV ── */}
       <nav className="bg-white border-b-4 border-[var(--color-burgundy)] sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-5">
             <img
               src={ausLogo}
               alt="AUS Logo"
-              className="h-9 sm:h-10 object-contain"
+              className="h-6 sm:h-7 object-contain"
             />
-            <div className="w-px h-8 bg-gray-200 hidden sm:block" />
+            <div className="w-px h-8 bg-gray-200 sm:block" />
             <img
-              src={ascLogo}
+              src={ascLogoNoCircle}
               alt="ASC Logo"
-              className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover"
+              className="h-7 sm:h-8 object-cover"
             />
             <div>
               <p className="text-xs text-[var(--color-maroon)] leading-tight hidden sm:block font-medium">
-                American University of Sharjah
+                {/* American University of Sharjah */}
               </p>
               <p className="text-sm font-bold text-gray-900 leading-tight">
-                Academic Support Center
+                {/* Academic Support Center */}
               </p>
             </div>
           </div>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8 text-sm text-gray-500 font-medium">
+          <div className="hidden md:flex items-center gap-8 text-md text-gray-500 font-medium">
             {["services", "workshops", "team", "contact"].map((id) => (
               <a
                 key={id}
@@ -159,13 +160,13 @@ const Home = () => {
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20 lg:py-24 flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="flex-1 text-center md:text-left">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--color-blue)] mb-4">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-gray-400 mb-4">
               Your Academic Home
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4 sm:mb-5">
               We're here to help
               <br />
-              you <span className="text-[var(--color-gold)]">succeed.</span>
+              you <span className="text-[var(--color-burgundy)]">succeed.</span>
             </h1>
             <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-md mb-4 sm:mb-6 mx-auto md:mx-0">
               Welcome to the Academic Support Center - we're glad you're here!
@@ -177,8 +178,8 @@ const Home = () => {
               of the way.
             </p>
             <div className="flex items-center gap-3 justify-center md:justify-start mb-4 sm:mb-6">
-              <span className="block w-8 h-px bg-[var(--color-gold)]" />
-              <span className="text-sm font-semibold tracking-wide text-[var(--color-gold)]">
+              <span className="block w-8 h-0.5 bg-[var(--color-burgundy)]" />
+              <span className="text-sm font-semibold tracking-wide text-[var(--color-burgundy)]">
                 Let's get started!
               </span>
             </div>
@@ -225,13 +226,13 @@ const Home = () => {
         ) : (
           data?.quick_links && (
             <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-3">
-              <LinkCard
+              {/* <LinkCard
                 title={"Lock-in Lounge"}
                 icon={"fa-lock"}
                 link={"/hub/lock_in_lounge"}
-                color={"var(--color-teal)"}
+                color={"#FFDF97"}
                 targetBlank={false}
-              ></LinkCard>
+              ></LinkCard> */}
               {data.quick_links.map((resource) => (
                 <LinkCard
                   key={resource.title}
@@ -239,6 +240,7 @@ const Home = () => {
                   icon={resource.icon}
                   link={resource.link}
                   color={resource.color}
+                  target={resource.target}
                 />
               ))}
             </div>
@@ -261,7 +263,7 @@ const Home = () => {
             {!loading && (
               <button
                 onClick={() => setShowModal(true)}
-                className="text-sm text-[var(--color-blue)] font-medium hover:underline flex items-center gap-1 cursor-pointer"
+                className="text-sm text-gray-400 font-medium hover:underline flex items-center gap-1 cursor-pointer"
               >
                 See all{" "}
                 <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
@@ -307,13 +309,13 @@ const Home = () => {
         </h3>
 
         {loading ? (
-          <div className="grid md:grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-1 gap-3">
             {Array.from({ length: 4 }).map((_, i) => (
               <DropDownSkeleton key={i} />
             ))}
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 gap-3 items-start">
+          <div className="grid md:grid-cols-1 gap-3 items-start">
             {data?.resources &&
               data.resources.map((rs) => (
                 <DropDownList
