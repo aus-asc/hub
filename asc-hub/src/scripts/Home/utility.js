@@ -14,13 +14,27 @@ export function getUpcoming(workshops = [], durationMinutes = 60) {
 }
 
 export const categoryColors = {
-  study_skills: {
+  // Fall 2026 categories — hues reuse the established palette (SCM brand constraint)
+  learning_strategies: {
     bg: "bg-[#FFC271]/10 hover:bg-[#FFC271]/20",
     text: "text-[#B87400]",
   },
   aus_essentials: {
     bg: "bg-[#9ADFB0]/10 hover:bg-[#9ADFB0]/20",
     text: "text-[#2E7D4F]",
+  },
+  wellness: {
+    bg: "bg-[#B79CC8]/10 hover:bg-[#B79CC8]/20",
+    text: "text-[#6A4C93]",
+  },
+  productivity_hacks: {
+    bg: "bg-[#63CDF5]/10 hover:bg-[#63CDF5]/20",
+    text: "text-[#1F6F8B]",
+  },
+  // Legacy categories (pre-Fall-2026 data, kept for archived terms)
+  study_skills: {
+    bg: "bg-[#FFC271]/10 hover:bg-[#FFC271]/20",
+    text: "text-[#B87400]",
   },
   self_care: {
     bg: "bg-[#B79CC8]/10 hover:bg-[#B79CC8]/20",

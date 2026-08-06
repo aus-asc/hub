@@ -60,7 +60,7 @@ const WorkshopCard = ({
 
   // Extract the raw Tailwind color class name to derive a bg for the bell icon
   // e.g. colors.text = "text-purple-600" → we want bg-purple-600
-  const bellColor = colors.text.match(/#[0-9A-Fa-f]{6}/)?.[0];
+  const bellColor = colors.text.match(/#[0-9A-Fa-f]{6}/)?.[0] ?? "#6B7280";
 
   return (
     <div className={`relative pt-8 ${compact ? "p-3 sm:p-4" : "p-4 sm:p-5"}`}>

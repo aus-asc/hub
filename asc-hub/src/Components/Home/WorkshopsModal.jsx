@@ -130,7 +130,7 @@ const WorkshopsModal = ({ workshops, onClose }) => {
                       category={ws.category}
                       facilitator={ws.facilitator}
                       datetime={ws.datetime}
-                      meetLink={ws.meetLink}
+                      meetLink={ws.meet_link}
                       location={ws.location}
                       week={ws.week}
                       compact
