@@ -1,6 +1,5 @@
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getStaffPhoto } from "../../scripts/Home/staffPhotos";
 
 // Types that get a role pill on the card; other types render no badge
 const ROLE_BADGES = {
@@ -18,7 +17,6 @@ const EmployeeCard = ({
   type,
   onOpenProfile,
 }) => {
-  const photo = getStaffPhoto(name);
   const roleBadge =
     ROLE_BADGES[
       (type || "")
@@ -115,29 +113,15 @@ const EmployeeCard = ({
       role={onOpenProfile ? "button" : undefined}
       tabIndex={onOpenProfile ? 0 : undefined}
     >
-      {/* Avatar — photo when one is bundled for this name, initials otherwise */}
-      {photo ? (
-        <div
-          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2px] mb-3 sm:mb-4 shrink-0"
-          style={{ backgroundColor: color }}
-        >
-          <img
-            src={photo}
-            alt={name}
-            className="w-full h-full rounded-full object-cover"
-            style={{ objectPosition: "50% 25%" }}
-          />
-        </div>
-      ) : (
-        <div
-          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center mb-3 sm:mb-4 shrink-0"
-          style={{ backgroundColor: color }}
-        >
-          <span className="text-white text-xs sm:text-sm font-bold tracking-wide">
-            {initials}
-          </span>
-        </div>
-      )}
+      {/* Avatar */}
+      <div
+        className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center mb-3 sm:mb-4 shrink-0"
+        style={{ backgroundColor: color }}
+      >
+        <span className="text-white text-xs sm:text-sm font-bold tracking-wide">
+          {initials}
+        </span>
+      </div>
 
       {/* Info */}
       <p className="text-xs sm:text-sm font-bold text-gray-900 leading-tight mb-0.5">

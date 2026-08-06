@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getStaffPhoto } from "../../scripts/Home/staffPhotos";
 
 const ROLE_LABELS = {
   senior_peer_mentor: "Senior Peer Mentor",
@@ -39,8 +38,6 @@ const StaffProfileModal = ({ staff, onClose }) => {
     booking_link: bookingLink,
     office_hours: officeHrs,
   } = staff;
-
-  const photo = getStaffPhoto(name);
 
   const roleLabel =
     ROLE_LABELS[
@@ -84,25 +81,14 @@ const StaffProfileModal = ({ staff, onClose }) => {
         </div>
 
         <div className="modal-scroll overflow-y-auto px-6 sm:px-8 pb-6 sm:pb-8 flex flex-col items-center text-center">
-          {/* Photo / initials */}
+          {/* Avatar */}
           <div
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-[3px] mb-4 shrink-0"
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center mb-4 shrink-0"
             style={{ backgroundColor: color }}
           >
-            {photo ? (
-              <img
-                src={photo}
-                alt={name}
-                className="w-full h-full rounded-full object-cover"
-                style={{ objectPosition: "50% 25%" }}
-              />
-            ) : (
-              <div className="w-full h-full rounded-full flex items-center justify-center">
-                <span className="text-white text-xl font-bold tracking-wide">
-                  {initials}
-                </span>
-              </div>
-            )}
+            <span className="text-white text-xl font-bold tracking-wide">
+              {initials}
+            </span>
           </div>
 
           <p className="text-base font-bold text-gray-900 leading-tight mb-1">

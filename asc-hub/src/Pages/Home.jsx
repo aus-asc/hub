@@ -20,7 +20,6 @@ import { ACTIONS, callAPI } from "../api";
 import WorkshopsModal from "../Components/Home/WorkshopsModal";
 import StaffProfileModal from "../Components/Home/StaffProfileModal";
 import { getUpcoming } from "../scripts/Home/utility";
-import { getStaffPhoto } from "../scripts/Home/staffPhotos";
 import { Footer } from "../Components/Footer";
 
 /* ── Skeleton primitives ── */
@@ -498,7 +497,7 @@ const Home = () => {
                             meetingLink={s.meeting_link}
                             type={s.type}
                             onOpenProfile={
-                              getStaffPhoto(s.name) || s.description
+                              s.description
                                 ? () => setProfileStaff(s)
                                 : undefined
                             }
