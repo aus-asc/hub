@@ -18,7 +18,9 @@ import ascLogoNoCircle from "../assets/asc-logo-no-circle.svg";
 import ausLogo from "../assets/aus-logo-bilingual.svg";
 import { ACTIONS, callAPI } from "../api";
 import WorkshopsModal from "../Components/Home/WorkshopsModal";
+import StaffProfileModal from "../Components/Home/StaffProfileModal";
 import { getUpcoming } from "../scripts/Home/utility";
+import { getStaffPhoto } from "../scripts/Home/staffPhotos";
 import { Footer } from "../Components/Footer";
 
 /* ── Skeleton primitives ── */
@@ -68,13 +70,36 @@ const Home = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [profileStaff, setProfileStaff] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
+  // Stale-while-revalidate: paint instantly from the last cached response
+  // (Apps Script cold starts take ~2s), then refresh from the API in the
+  // background and update both the page and the cache.
   useEffect(() => {
-    callAPI({ method: "GET", action: ACTIONS.HOME }).then((res) => {
-      setData(res);
-      setLoading(false);
-    });
+    const CACHE_KEY = "asc_hub_home_v1";
+
+    try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (cached) {
+        setData(cached);
+        setLoading(false);
+      }
+    } catch {
+      // ignore a corrupt cache — the network fetch below overwrites it
+    }
+
+    callAPI({ method: "GET", action: ACTIONS.HOME })
+      .then((res) => {
+        setData(res);
+        setLoading(false);
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(res));
+        } catch {
+          // storage full/unavailable — page still works without the cache
+        }
+      })
+      .catch((err) => console.error("Home fetch failed:", err));
   }, []);
 
   // Close mobile nav on resize to desktop
@@ -357,45 +382,50 @@ const Home = () => {
           ) : (
             data?.staff &&
             (() => {
-              const byType = (type) =>
-                data.staff.filter(
-                  (s) =>
-                    s.type
-                      .trim()
-                      .toLowerCase()
-                      .replace(/[\s-]+/g, "_") === type,
-                );
+              const normType = (s) =>
+                (s.type || "")
+                  .trim()
+                  .toLowerCase()
+                  .replace(/[\s-]+/g, "_");
+
+              // Staff rows whose type maps to no section (e.g. internal roles
+              // like Social Media Coordinator) are intentionally not rendered.
+              const byTypes = (types) =>
+                data.staff.filter((s) => types.includes(normType(s)));
+
+              const roleRank = (s) =>
+                normType(s) === "senior_peer_mentor" ? 0 : 1;
 
               const sections = [
                 {
-                  type: "faculty",
+                  types: ["faculty"],
                   label: "Academic Coaches",
                   accent: "bg-[var(--color-blue)]",
                   description:
                     "Our academic coaches are experienced university staff dedicated to supporting your success. They offer personalized guidance to help students set goals, develop effective learning strategies and improve their time management skills.",
                 },
                 {
-                  type: "peer_mentor",
+                  types: ["senior_peer_mentor", "peer_mentor"],
                   label: "Student Peer Mentors",
                   accent: "bg-[var(--color-green)]",
                   description:
                     "Peer mentors are fellow students who hold regular office hours for one-on-one sessions. Whether you are looking for academic advice or just want to talk through university life, they're here to listen, guide and help.",
                 },
                 {
-                  type: "ambassador",
+                  types: ["ambassador"],
                   label: "Student Ambassadors",
                   accent: "bg-[var(--color-gold)]",
                   description:
-                    "Ambassadors are the face of the ASC on campus. They lead workshops, raise awareness about our services and help connect students with the support they need.",
+                    "Ambassadors are the face of the ASC on campus. They co-present workshops, raise awareness about our services and help connect students with the support they need.",
                 },
               ];
 
-              return sections.map(({ type, label, accent, description }) => {
-                const members = byType(type);
+              return sections.map(({ types, label, accent, description }) => {
+                const members = byTypes(types);
                 if (!members.length) return null;
 
                 return (
-                  <div key={type} className="mb-12 sm:mb-16">
+                  <div key={label} className="mb-12 sm:mb-16">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:gap-8 mb-6 sm:mb-8">
                       <div className="shrink-0">
                         <h4 className="text-lg font-bold text-gray-900 mb-1">
@@ -411,7 +441,7 @@ const Home = () => {
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 items-start">
                       {members
                         .sort((a, b) => {
-                          if (type === "faculty") {
+                          if (types.includes("faculty")) {
                             const aHasLink = !!a.booking_link;
                             const bHasLink = !!b.booking_link;
 
@@ -450,6 +480,7 @@ const Home = () => {
                           }
 
                           return (
+                            roleRank(a) - roleRank(b) ||
                             (a.college || "").localeCompare(b.college || "") ||
                             (a.major || "").localeCompare(b.major || "") ||
                             (a.name || "").localeCompare(b.name || "")
@@ -466,6 +497,11 @@ const Home = () => {
                             bookingLink={s.booking_link}
                             meetingLink={s.meeting_link}
                             type={s.type}
+                            onOpenProfile={
+                              getStaffPhoto(s.name) || s.description
+                                ? () => setProfileStaff(s)
+                                : undefined
+                            }
                           />
                         ))}
                     </div>
@@ -555,6 +591,13 @@ const Home = () => {
         <WorkshopsModal
           workshops={data?.workshops ?? []}
           onClose={() => setShowModal(false)}
+        />
+      )}
+
+      {profileStaff && (
+        <StaffProfileModal
+          staff={profileStaff}
+          onClose={() => setProfileStaff(null)}
         />
       )}
     </div>

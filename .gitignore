@@ -1,0 +1,4 @@
+# Private local context — never publish (imports live outside the repo)
+CLAUDE.md
+
+.DS_Store

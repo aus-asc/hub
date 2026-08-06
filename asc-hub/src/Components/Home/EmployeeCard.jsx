@@ -1,3 +1,10 @@
+import { getStaffPhoto } from "../../scripts/Home/staffPhotos";
+
+// Types that get a role pill on the card; other types render no badge
+const ROLE_BADGES = {
+  senior_peer_mentor: "Senior Peer Mentor",
+};
+
 const EmployeeCard = ({
   name,
   college,
@@ -6,7 +13,18 @@ const EmployeeCard = ({
   color = "var(--color-fallback, #000000)",
   bookingLink,
   meetingLink,
+  type,
+  onOpenProfile,
 }) => {
+  const photo = getStaffPhoto(name);
+  const roleBadge =
+    ROLE_BADGES[
+      (type || "")
+        .trim()
+        .toLowerCase()
+        .replace(/[\s-]+/g, "_")
+    ];
+
   const initials = name
     ? name
         .split(" ")
@@ -77,21 +95,61 @@ const EmployeeCard = ({
   const officeOpen = meetingLink ? isInOfficeHours() : false;
 
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-4 sm:p-5 hover:shadow-md transition-all duration-200 group flex flex-col">
-      {/* Avatar */}
-      <div
-        className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center mb-3 sm:mb-4 shrink-0"
-        style={{ backgroundColor: color }}
-      >
-        <span className="text-white text-xs sm:text-sm font-bold tracking-wide">
-          {initials}
-        </span>
-      </div>
+    <div
+      className={`bg-white border border-gray-100 rounded-2xl p-4 sm:p-5 hover:shadow-md transition-all duration-200 group flex flex-col ${
+        onOpenProfile ? "cursor-pointer" : ""
+      }`}
+      onClick={onOpenProfile}
+      onKeyDown={
+        onOpenProfile
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onOpenProfile();
+              }
+            }
+          : undefined
+      }
+      role={onOpenProfile ? "button" : undefined}
+      tabIndex={onOpenProfile ? 0 : undefined}
+    >
+      {/* Avatar — photo when one is bundled for this name, initials otherwise */}
+      {photo ? (
+        <div
+          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2px] mb-3 sm:mb-4 shrink-0"
+          style={{ backgroundColor: color }}
+        >
+          <img
+            src={photo}
+            alt={name}
+            className="w-full h-full rounded-full object-cover"
+            style={{ objectPosition: "50% 25%" }}
+          />
+        </div>
+      ) : (
+        <div
+          className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center mb-3 sm:mb-4 shrink-0"
+          style={{ backgroundColor: color }}
+        >
+          <span className="text-white text-xs sm:text-sm font-bold tracking-wide">
+            {initials}
+          </span>
+        </div>
+      )}
 
       {/* Info */}
       <p className="text-xs sm:text-sm font-bold text-gray-900 leading-tight mb-0.5">
         {name}
       </p>
+
+      {roleBadge && (
+        <span
+          className="self-start text-[9px] sm:text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full mb-1"
+          style={{ color, backgroundColor: `${color}1A` }}
+        >
+          {roleBadge}
+        </span>
+      )}
 
       {(college || major) && (
         <p className="text-[10px] sm:text-xs text-gray-400 mb-3">
@@ -145,6 +203,7 @@ const EmployeeCard = ({
           href={meetingLink}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           className="mt-3 inline-block w-full text-center text-xs font-medium text-white bg-green-500 hover:bg-green-600 rounded-md px-3 py-1.5 transition-colors"
         >
           Join Meeting
@@ -157,6 +216,7 @@ const EmployeeCard = ({
           href={bookingLink}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           className="mt-2 inline-block w-full text-center text-xs font-medium text-white bg-[var(--color-burgundy)] hover:bg-[var(--color-burgundy-hover)] rounded-md px-3 py-1.5 transition-colors"
         >
           {bookingLink.startsWith("mailto") ? "Contact" : "Book Appointment"}
