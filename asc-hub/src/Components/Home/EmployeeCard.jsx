@@ -1,3 +1,5 @@
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getStaffPhoto } from "../../scripts/Home/staffPhotos";
 
 // Types that get a role pill on the card; other types render no badge
@@ -152,8 +154,19 @@ const EmployeeCard = ({
       )}
 
       {(college || major) && (
-        <p className="text-[10px] sm:text-xs text-gray-400 mb-3">
+        <p
+          className={`text-[10px] sm:text-xs text-gray-400 ${
+            onOpenProfile ? "mb-1.5" : "mb-3"
+          }`}
+        >
           {college} {college && major && "·"} {major}
+        </p>
+      )}
+
+      {onOpenProfile && (
+        <p className="text-[10px] sm:text-xs font-medium text-gray-400 group-hover:text-gray-600 transition-colors mb-3 flex items-center gap-1">
+          View profile
+          <FontAwesomeIcon icon={faChevronRight} className="text-[8px]" />
         </p>
       )}
 
